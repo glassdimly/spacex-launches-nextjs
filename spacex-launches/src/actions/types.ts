@@ -26,3 +26,6 @@ export interface CheckBoxFilter {
   name: string;
   filterFunc: FilterFunc;
 }
+
+export type FiltersState = { [key: string]: FilterFunc };
+export type SetFiltersState = (filters: FiltersState) => void;

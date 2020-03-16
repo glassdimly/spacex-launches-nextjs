@@ -1,3 +1,16 @@
+type MqFunc = (rules: string) => string;
+
+interface Theme {
+  colors: { [key: string]: string };
+  units: { [key: string]: string };
+  fonts: { [key: string]: string };
+  fontFamily: string;
+  maxWidth: string;
+  border: string;
+  borderRadius: string;
+  mq: { [key: string]: MqFunc };
+}
+
 const theme = {
   colors: {
     primary: '#FFF',
@@ -24,8 +37,8 @@ const theme = {
 
   mq: {
     // xxsm: cssRules => `@media screen and (min-width: 320px){${cssRules}}`,
-    xsm: cssRules => `@media screen and (min-width: 420px){${cssRules}}`,
-    sm: cssRules => `@media screen and (min-width: 600px){${cssRules}}`,
+    xsm: (cssRules: string): string => `@media screen and (min-width: 420px){${cssRules}}`,
+    sm: (cssRules: string): string => `@media screen and (min-width: 600px){${cssRules}}`,
   },
 
   fontFamily: 'geomanist, Helvetica, sans-serif;',

@@ -1,8 +1,9 @@
+// @ts-nocheck
+// @TODO add TS for this.
 import React from 'react';
 import { useTable, useSortBy, usePagination } from 'react-table';
 import Image from '../components/Image';
 import theme from '../theme';
-import WithLink from '../components/WithLink';
 import ColorBlueSvgFilter from '../theme/ColorBlueSvgFilter';
 
 const { colors, units, fonts, mq } = theme;
@@ -67,7 +68,6 @@ function Table({ columns, data }) {
                 itemScope
                 itemType="http://schema.org/Article"
                 {...row.getRowProps()}
-                onClick={() => window.open(row.original.url)}
               >
                 {row.cells.map(cell => {
                   return (
@@ -77,9 +77,7 @@ function Table({ columns, data }) {
                         .toUpperCase() + cell.column.id.slice(1)}`}
                       {...cell.getCellProps()}
                     >
-                      <WithLink target="_blank" className="launchListLink" href={row.original.url}>
-                        {cell.render('Cell', row)}
-                      </WithLink>
+                      {cell.render('Cell', row)}
                     </td>
                   );
                 })}
@@ -225,12 +223,6 @@ function Table({ columns, data }) {
           border-right-style: ${theme.border};
           border-bottom-right-radius: ${units.sm};
           border-top-right-radius: ${units.sm};
-        }
-
-        .launchListRow:hover {
-          cursor: pointer;
-          background: ${colors.primary};
-          transition: background-color 300ms ease-in-out;
         }
 
         :global(.launchListLink) {

@@ -5,6 +5,7 @@ import Table from './Table';
 import React from 'react';
 import WithLink from '../components/WithLink';
 import { Launch } from '../actions/types';
+
 interface CellProps {
   [key: string]: any;
 }
@@ -129,7 +130,9 @@ function LaunchList({ data }: { data: Launch[] }) {
           original.url ? (
             <>
               <span aria-hidden>
-                <Image src="images/link.svg" className="linkImg rowData" />
+                <WithLink href={original.url} target="_blank">
+                  <Image src="images/link.svg" className="linkImg rowData" />
+                </WithLink>
                 <style jsx>{`
                   :global(.linkImg) {
                     filter: invert(100%) url(#colorBlue);

@@ -35,7 +35,9 @@ const getIsCoreReused = (rocket: { [key: string]: any }): boolean => {
     key => key.endsWith('_stage') && !!rocket[key].cores,
   );
   return stagesKeysWithCores.some(stageKey => {
-    const reusedCore = rocket[stageKey].cores.find(core => core.reused);
+    const reusedCore = rocket[stageKey].cores.find(
+      (core: { [key: string]: any }): boolean => core.reused,
+    );
     return !!reusedCore;
   });
 };

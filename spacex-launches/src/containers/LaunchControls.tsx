@@ -2,12 +2,9 @@ import React, { FC, ChangeEvent } from 'react';
 import _cloneDeep from 'lodash/cloneDeep';
 import getCheckBoxFilterConfig from '../actions/getCheckBoxFilterConfig';
 import theme from '../theme';
-import { CheckBoxFilter, FilterFunc } from '../actions/types';
+import { CheckBoxFilter, FiltersState, SetFiltersState } from '../actions/types';
 
 const { colors, units } = theme;
-
-type FiltersState = { [key: string]: FilterFunc } | {};
-type SetFiltersState = (filters: FiltersState) => void;
 
 interface LaunchControlsProps {
   isLoading: boolean;
@@ -32,8 +29,7 @@ const LaunchControls: FC<LaunchControlsProps> = ({
         ...{ [filterConfig.id]: filterConfig.filterFunc },
       });
     } else {
-      const newFilterState = _cloneDeep(filtersState);
-      // @ts-ignore @TODO fix this.
+      const newFilterState: FiltersState = _cloneDeep(filtersState);
       delete newFilterState[filterConfig.id];
       setFiltersState(newFilterState);
     }
@@ -43,11 +39,11 @@ const LaunchControls: FC<LaunchControlsProps> = ({
     // @TODO do this with props and things
     const updatedClass = 'filterUpdatedAnimation';
     const buttonIconSelector = '.refreshButtonIcon';
-    const refreshButton = document.querySelector(buttonIconSelector);
+    const refreshButton = document.querySelector(buttonIconSelector) as Element;
     if (refreshButton.classList.contains(updatedClass)) return;
     refreshButton.classList.add(updatedClass);
     setTimeout(
-      () => document.querySelector(buttonIconSelector).classList.remove(updatedClass),
+      () => (document.querySelector(buttonIconSelector) as Element).classList.remove(updatedClass),
       900,
     );
   };

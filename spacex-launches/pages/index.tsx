@@ -10,12 +10,12 @@ import theme from '../src/theme';
 import LaunchControls from '../src/containers/LaunchControls';
 import H1 from '../src/components/H1';
 import Footer from '../src/components/Footer';
-import { Launch } from '../src/actions/types';
+import { Launch, FiltersState, FilterFunc } from '../src/actions/types';
 
 const { colors, units, mq } = theme;
 
 // apply filters from state
-const applyFilters = (launches, filterState) => {
+const applyFilters = (launches: Launch[], filterState: FilterFunc[]) => {
   let tempLaunches = _cloneDeep(launches);
   filterState.forEach(filterFunc => {
     tempLaunches = [...tempLaunches.filter(filterFunc)];
@@ -28,9 +28,9 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ launches }): JSX.Element => {
-  const [filtersState, setFiltersState] = React.useState({});
-  const [isLoadingState, setIsLoadingState] = React.useState(false);
-  const [launchesState, setLaunchesState] = React.useState(launches);
+  const [filtersState, setFiltersState] = React.useState<FiltersState | {}>({});
+  const [isLoadingState, setIsLoadingState] = React.useState<boolean>(false);
+  const [launchesState, setLaunchesState] = React.useState<Launch[]>(launches);
 
   const refreshLaunchData = async () => {
     setIsLoadingState(true);
