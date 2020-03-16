@@ -10,3 +10,6 @@ with NextJS core in the root, and sites in subdirs of that root. The entrypoint
 for the SpaceX site can be found at `spacex-launches/pages/index.tsx`, wherein
 can be found some conventions unique to NextJS, namely getInitialProps instead
 of useEffect.
+
+To see changes against core NextJS with a fresh stock Spacex site, see
+https://github.com/glassdimly/spacex-launches-nextjs/pull/1/files
