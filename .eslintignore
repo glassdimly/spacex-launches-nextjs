@@ -4,3 +4,9 @@ node_modules
 **/dist/**
 examples/with-ioc/**
 examples/with-kea/**
+packages/**
+examples/**
+errors/**
+docs/**
+bench/**
+.vscode/**
