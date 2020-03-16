@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-// @TODO implement srcset
-const Image = props => (
+interface ImageProps {
+  [key: string]: any;
+}
+
+// @TODO implement srcset, make this more than a passthrough.
+const Image: FC<ImageProps> = props => (
   <>
     <img {...props} />
     <style jsx>{`

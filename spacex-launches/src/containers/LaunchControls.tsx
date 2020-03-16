@@ -1,28 +1,30 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import _cloneDeep from 'lodash/cloneDeep';
 import getCheckBoxFilterConfig from '../actions/getCheckBoxFilterConfig';
 import theme from '../theme';
+import { CheckBoxFilter, FilterFunc } from '../actions/types';
 
 const { colors, units } = theme;
 
-type FilterFunction = (data: any[]) => any[];
-type FiltersState = { [key: string]: FilterFunction } | {};
-type SetFiltersState = (FiltersState) => void;
+type FiltersState = { [key: string]: FilterFunc } | {};
+type SetFiltersState = (filters: FiltersState) => void;
 
-type LaunchControlsProps = {
+interface LaunchControlsProps {
   isLoading: boolean;
   refreshLaunchData: () => {};
   setFiltersState: SetFiltersState;
   filtersState: FiltersState;
-};
+}
 
-const LaunchControls: FunctionComponent<LaunchControlsProps> = ({
+const LaunchControls: FC<LaunchControlsProps> = ({
   isLoading,
   refreshLaunchData,
   setFiltersState,
   filtersState,
 }) => {
-  const curryHandleCheckboxFilterClick = filterConfig => e => {
+  const curryHandleCheckboxFilterClick = (filterConfig: CheckBoxFilter) => (
+    e: ChangeEvent<HTMLInputElement>,
+  ) => {
     rotateRefreshFinite();
     if (e.target.checked === true) {
       setFiltersState({
@@ -31,6 +33,7 @@ const LaunchControls: FunctionComponent<LaunchControlsProps> = ({
       });
     } else {
       const newFilterState = _cloneDeep(filtersState);
+      // @ts-ignore @TODO fix this.
       delete newFilterState[filterConfig.id];
       setFiltersState(newFilterState);
     }

@@ -1,8 +1,8 @@
 import _get from 'lodash/get';
 import _find from 'lodash/find';
-import { Launch } from './types';
+import { Launch, RawLaunch } from './types';
 
-const adaptLaunches = (launches): Launch[] => {
+const adaptLaunches = (launches: RawLaunch[]): Launch[] => {
   return launches.map(launch => {
     return {
       date: launch.launch_date_unix,
@@ -20,7 +20,7 @@ const adaptLaunches = (launches): Launch[] => {
   });
 };
 
-const getWithReddit = data => {
+const getWithReddit = (data: any): boolean => {
   if (!isObjectOrArray(data)) return false;
   const dataKeys = Object.keys(data);
   if (!dataKeys.length) return false;
@@ -29,7 +29,7 @@ const getWithReddit = data => {
   return dataKeys.some(key => getWithReddit(data[key]));
 };
 
-const getIsCoreReused = rocket => {
+const getIsCoreReused = (rocket: { [key: string]: any }): boolean => {
   if (!rocket) return false;
   const stagesKeysWithCores = Object.keys(rocket).filter(
     key => key.endsWith('_stage') && !!rocket[key].cores,
@@ -41,7 +41,7 @@ const getIsCoreReused = rocket => {
 };
 
 // move to utils. Probably doesn't work for Set and Map. Not needed.
-const isObjectOrArray = variable =>
+const isObjectOrArray = (variable: any): boolean =>
   Object.prototype.toString.call(variable) === '[object Object]' || Array.isArray(variable);
 
 export default adaptLaunches;

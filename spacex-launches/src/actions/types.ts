@@ -18,3 +18,11 @@ export interface Params {
 export interface RawLaunch {
   [key: string]: any;
 }
+
+export type FilterFunc = (launch: Launch) => boolean;
+
+export interface CheckBoxFilter {
+  id: string;
+  name: string;
+  filterFunc: FilterFunc;
+}

@@ -3,14 +3,19 @@ import moment from 'moment';
 import Image from '../components/Image';
 import Table from './Table';
 import React from 'react';
+import WithLink from '../components/WithLink';
+import { Launch } from '../actions/types';
+interface CellProps {
+  [key: string]: any;
+}
 
-function LaunchList({ data }) {
+function LaunchList({ data }: { data: Launch[] }) {
   const columns = useMemo(
     () => [
       {
         Header: 'Badge',
         accessor: 'img',
-        Cell: ({ original }) => (
+        Cell: ({ original }: CellProps) => (
           <>
             <Image
               itemProp="image"
@@ -35,7 +40,7 @@ function LaunchList({ data }) {
         Header: 'Rocket Name',
         accessor: 'rocketName',
 
-        Cell: ({ original }) => (
+        Cell: ({ original }: CellProps) => (
           <span itemProp="subjectOf" className="rocketName rowData">
             {original.rocketName}
           </span>
@@ -50,7 +55,7 @@ function LaunchList({ data }) {
         Header: 'Launch Date',
         accessor: 'date',
 
-        Cell: ({ original }) => (
+        Cell: ({ original }: CellProps) => (
           <span itemProp="temporal" className="launchDate rowData">
             {moment.unix(original.date).format('MM/DD/YYYY')}
           </span>
@@ -59,7 +64,7 @@ function LaunchList({ data }) {
       {
         Header: 'Details',
         accessor: 'details',
-        Cell: ({ original }) => (
+        Cell: ({ original }: CellProps) => (
           <>
             <span className="detailsTruncateContainer">
               <span
@@ -111,7 +116,7 @@ function LaunchList({ data }) {
       {
         Header: 'ID',
         accessor: 'id',
-        Cell: ({ original }) => (
+        Cell: ({ original }: CellProps) => (
           <span itemProp="identifier" className="id rowData">
             {original.id}
           </span>
@@ -125,7 +130,6 @@ function LaunchList({ data }) {
             <>
               <span aria-hidden>
                 <Image src="images/link.svg" className="linkImg rowData" />
-
                 <style jsx>{`
                   :global(.linkImg) {
                     filter: invert(100%) url(#colorBlue);

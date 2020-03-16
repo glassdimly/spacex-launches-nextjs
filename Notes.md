@@ -12,3 +12,4 @@ As an experiment, decided not to do bem.
 Stuck with CSS w/ JS vars instead of moving to SASS. CSS got real messy. Would have preferred SASS.
 Link blue is a little off
 I made a custom prettier task in the root for speed.
+After re-reading the requirements, I see that the entire row doesn't link, just the link icon. However, I'm going to leave it as is because it showcases something cool.

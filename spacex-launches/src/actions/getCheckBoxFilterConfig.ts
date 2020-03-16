@@ -1,8 +1,4 @@
-interface CheckBoxFilter {
-  id: string;
-  name: string;
-  filterFunc: (string) => {};
-}
+import { CheckBoxFilter } from './types';
 
 const getCheckBoxFilterConfig = (): CheckBoxFilter[] => {
   return [
