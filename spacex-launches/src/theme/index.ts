@@ -30,6 +30,7 @@ const theme = {
   },
 
   fonts: {
+    xsm: '0.8rem',
     sm: '0.92rem',
     med: '1rem',
     lg: '1.06rem',

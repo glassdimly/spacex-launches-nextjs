@@ -193,12 +193,13 @@ function Table({ columns, data }) {
         .launchListHeaderRow {
           border-spacing: 0 0;
           color: #043d67;
-          font-size: ${fonts.sm};
+          font-size: ${fonts.xsm};
         }
         
           ${mq.xsm(`
             .launchListHeaderRow {
-               font-size: ${fonts.lg};
+               font-size: ${fonts.lg} !important;
+               white-space: nowrap !important;
              }
         `)}
         
