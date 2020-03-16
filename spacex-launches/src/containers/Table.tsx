@@ -70,11 +70,15 @@ function Table({ columns, data }) {
                 {...row.getRowProps()}
               >
                 {row.cells.map(cell => {
+                  const hasAndIsUrl = row.original.url && cell.column.id === 'url';
                   return (
                     <td
+                      onClick={hasAndIsUrl ? () => window.open(row.original.url) : () => null}
                       className={`launchListCell launchListData${cell.column.id
                         .charAt(0)
-                        .toUpperCase() + cell.column.id.slice(1)}`}
+                        .toUpperCase() + cell.column.id.slice(1)}${
+                        hasAndIsUrl ? ' cellIsUrl' : ''
+                      }`}
                       {...cell.getCellProps()}
                     >
                       {cell.render('Cell', row)}
@@ -171,6 +175,14 @@ function Table({ columns, data }) {
             display: table-cell !important;
           }
         `)}
+        
+        :global(.cellIsUrl:hover img) {
+            filter: none;
+        }
+        
+        .cellIsUrl:hover {
+            cursor: pointer;
+        }
         
         .launchListHeader {
           background-image: ${colors.primaryGradient};
