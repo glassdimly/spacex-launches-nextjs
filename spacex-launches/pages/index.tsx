@@ -14,7 +14,16 @@ import { Launch, FiltersState, FilterFunc } from '../src/actions/types';
 
 const { colors, units, mq } = theme;
 
-// apply filters from state
+/**
+ * Apply each filter in filterState to launches and return the result.
+ * This is how the launch data is filtered: all launches are stored,
+ * and on render the launch data is filtered and passed to the LaunchList.
+ * LaunchControl gets the filter state-setter function that controls
+ * state on Home.
+ *
+ * @param {array} launches
+ * @param {array} filterState
+ */
 const applyFilters = (launches: Launch[], filterState: FilterFunc[]) => {
   let tempLaunches = _cloneDeep(launches);
   filterState.forEach(filterFunc => {

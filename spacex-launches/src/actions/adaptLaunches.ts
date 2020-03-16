@@ -2,6 +2,12 @@ import _get from 'lodash/get';
 import _find from 'lodash/find';
 import { Launch, RawLaunch } from './types';
 
+/**
+ * Take in raw API launches, return array of adapted data
+ * @param {array} launches
+ * @return {array} adaptedLaunches
+ */
+
 const adaptLaunches = (launches: RawLaunch[]): Launch[] => {
   return launches.map(launch => {
     return {
@@ -20,6 +26,11 @@ const adaptLaunches = (launches: RawLaunch[]): Launch[] => {
   });
 };
 
+/**
+ * Determine if the launch has reddit data or not.
+ * @param data {Object|Array}
+ * @return {boolean}
+ */
 const getWithReddit = (data: any): boolean => {
   if (!isObjectOrArray(data)) return false;
   const dataKeys = Object.keys(data);
@@ -29,6 +40,11 @@ const getWithReddit = (data: any): boolean => {
   return dataKeys.some(key => getWithReddit(data[key]));
 };
 
+/**
+ * Determine if the rocket's core was reused.
+ * @param rocket {Object|Array}
+ * @return {boolean}
+ */
 const getIsCoreReused = (rocket: { [key: string]: any }): boolean => {
   if (!rocket) return false;
   const stagesKeysWithCores = Object.keys(rocket).filter(
@@ -42,7 +58,13 @@ const getIsCoreReused = (rocket: { [key: string]: any }): boolean => {
   });
 };
 
-// move to utils. Probably doesn't work for Set and Map. Not needed.
+/**
+ * Determine whether variable is either an object or an array.
+ * Note: move to utils. Probably doesn't work for Set and Map.
+ *
+ * @param {any} variable
+ * @return {boolean}
+ */
 const isObjectOrArray = (variable: any): boolean =>
   Object.prototype.toString.call(variable) === '[object Object]' || Array.isArray(variable);
 

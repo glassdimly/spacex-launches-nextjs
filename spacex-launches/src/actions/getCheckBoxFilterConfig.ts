@@ -1,5 +1,9 @@
 import { CheckBoxFilter } from './types';
 
+/**
+ * Return the config for all the checkboxes and the filters they apply to the launches.
+ * @return {array} All the checkbox filter configs
+ */
 const getCheckBoxFilterConfig = (): CheckBoxFilter[] => {
   return [
     {

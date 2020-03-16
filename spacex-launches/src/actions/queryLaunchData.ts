@@ -6,7 +6,15 @@ type AxiosOpts = {
   params?: Params;
 };
 
-// @TODO Currently, we have only have 107 launches. Fastest/easiest to get them all and page. If list grows, implement limit-driven paging.
+/**
+ * Query the spacex launches API and return the results.
+ * @TODO Currently, we have only have 107 launches. Fastest/easiest to get them all and page. If list grows, implement limit-driven paging.
+ * Note: @TODO fix TS def that says we only return Launches. This can query cores or other api data also.
+ * @param urlParams {object}: the query parameters as object to append to the url.
+ * @param url {string}: the api url to query
+ * @param axiosOpts {object} to be merged over axios options and fed to axios.
+ * @return {array} the data from the API response. This can be cores or launches, actually.
+ */
 const queryLaunchData = async (
   urlParams?: Params,
   url: string = '/v3/launches',
