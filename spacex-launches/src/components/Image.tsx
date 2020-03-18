@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+// @TODO get more specific here
 interface ImageProps {
   [key: string]: any;
 }

@@ -6,7 +6,7 @@ interface WithLinkProps {
   [x: string]: any;
 }
 
-// @TODO type this properly.
+// @TODO type this properly. Also don't spread props.
 const WithLink: React.FunctionComponent<WithLinkProps> = ({
   href,
   children,
